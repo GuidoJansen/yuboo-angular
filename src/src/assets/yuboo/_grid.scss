@@ -1,0 +1,428 @@
+@charset "utf-8";
+
+@import 'defaults/supports';
+@import 'defaults/media';
+@import 'defaults/sizes';
+@import 'defaults/dimensions';
+@import 'defaults/grid';
+
+@import 'mixins';
+
+@mixin yuboo-grid-grid($config) {
+  $fallback: map-get($config, fallback);
+  $fallback: false !default;
+  
+  $verbose: map-get($config, verbose);
+  $verbose: false !default;
+
+  @if $verbose {
+    content: "yuboo-grid: grid";
+  }
+  @include use-box-sizing(border-box);
+  margin: 0 auto;
+  $areas: map-get($config, areas);
+  @each $area-name, $area-config in $areas {
+    $media-rule:   map-get($area-config, media-rule);
+    @include media(#{$media-rule}) {
+      @if $verbose {
+        content: "yuboo-grid: #{$area-name}-grid";
+      }
+
+      padding: 0 (map-get($area-config, gutter-width) / 2);
+      min-width: map-get($area-config, min-width);
+      max-width: map-get($area-config, max-width);
+    }
+  }
+}
+
+@mixin yuboo-grid-grid-fluid($config) {
+  $fallback: map-get($config, fallback);
+  $fallback: false !default;
+
+  $verbose: map-get($config, verbose);
+  $verbose: false !default;
+
+  @include use-box-sizing(border-box);
+  margin: 0 auto;
+  width: 100%;
+  $areas: map-get($config, areas);
+  @each $area-name, $area-config in $areas {
+    $media-rule:   map-get($area-config, media-rule);
+    @include media(#{$media-rule}) {
+
+      @if $verbose {
+        content: "yuboo-grid: #{$area-name}-grid-fluid";
+      }
+      padding: 0 (map-get($area-config, gutter-width) / 2);
+    }
+  }
+}
+
+@mixin yuboo-grid-row($config) {
+  $fallback: map-get($config, fallback);
+  $fallback: false !default;
+
+  $verbose: map-get($config, verbose);
+  $verbose: false !default;
+
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  @if $fallback {
+    font-size: 0;
+  }
+  $areas: map-get($config, areas);
+
+  @include display-flex;
+  @include flex-wrap(wrap);
+  @include flex-direction(row);
+  @include align-items(stretch);
+
+
+  @each $area-name, $area-config in $areas {
+    $gutter-width: map-get($area-config, gutter-width);
+    $gutter-height: map-get($area-config, gutter-height);
+
+    $gutter-width: $yuboo-grid-margin-#{$area-name} !default;
+    $gutter-height: $yuboo-grid-margin-#{$area-name} !default;
+
+    $media-rule:   map-get($area-config, media-rule);
+    @include media(#{$media-rule}) {
+      @if $verbose {
+        content: "yuboo-grid: #{$area-name}-row";
+      }
+      margin: 0 ( -($gutter-width / 2))  ($gutter-height);
+    }
+  }
+}
+
+@mixin yuboo-grid-column($config) {
+  $fallback: map-get($config, fallback);
+  $fallback: false !default;
+
+  $verbose: map-get($config, verbose);
+  $verbose: false !default;
+
+  @include use-box-sizing(border-box);
+  @include use-inline-block;
+  min-height: 1px;
+  margin: 0;
+
+  @if $fallback {
+    vertical-align: top;
+    font-size: initial;
+  }
+
+  @include supports($config-supports-display-flex) {
+    & {
+      @include flex-grow(0);
+      @include flex-shrink(1);
+    }
+  }
+  $areas: map-get($config, areas);
+  @each $area-name, $area-config in $areas {
+    $gutter-height: map-get($area-config ,gutter-height);
+    $gutter-width: map-get($area-config, gutter-width);
+
+    $gutter-width: $yuboo-grid-margin-#{$area-name} !default;
+    $gutter-height: $yuboo-grid-margin-#{$area-name} !default;
+
+    $media-rule:   map-get($area-config, media-rule);
+    @include media(#{$media-rule}) {
+      padding: ($gutter-height / 2) ($gutter-width / 2);
+      margin: 0 0;
+    }
+
+  }
+
+}
+
+@mixin yuboo-grid-column-width($config, $area-name, $cols) {
+  $fallback: map-get($config, fallback);
+  $fallback: false !default;
+
+  $areas: map-get($config, areas);
+  $area-config: map-get($areas, #{$area-name} );
+  $media-rule:   map-get($area-config, media-rule);
+  @include media($media-rule) {
+    @if $fallback {
+      width:  $cols * 100% / map-get($area-config, column-count);
+    }
+    -webkit-flex-basis:  $cols * 100% / map-get($area-config, column-count);
+    -ms-flex-preferred-size:  $cols * 100% / map-get($area-config, column-count);
+    -moz-flex-basis:  $cols * 100% / map-get($area-config, column-count);
+    flex-basis:  $cols * 100% / map-get($area-config, column-count);
+
+  }
+}
+
+@mixin yuboo-grid-column-push($config, $area-name, $cols) {
+  $fallback: map-get($config, fallback);
+  $fallback: false !default;
+  
+  $areas: map-get($config, areas);
+  $area-config: map-get($areas, #{$area-name} );
+  $media-rule:   map-get($area-config, media-rule);
+  @include media($media-rule) {
+    margin-left:   $cols * 100% / map-get($area-config, column-count);
+    margin-right: -$cols * 100% / map-get($area-config, column-count);
+  }
+}
+
+@mixin yuboo-grid-column-pull($config, $area-name, $cols) {
+  $fallback: map-get($config, fallback);
+  $fallback: false !default;
+  
+  $areas: map-get($config, areas);
+  $area-config: map-get($areas, #{$area-name} );
+  $media-rule:   map-get($area-config, media-rule);
+  @include media($media-rule) {
+    margin-left:  -$cols * 100% / map-get($area-config, column-count);
+    margin-right:  $cols * 100% / map-get($area-config, column-count);
+  }
+}
+
+@mixin yuboo-grid-generate-columns($config) {
+  $fallback: map-get($config, fallback);
+  $fallback: false !default;
+  
+  $verbose: map-get($config, verbose);
+  $verbose: false !default;
+  
+  // $debug: map-get($config, debug);
+  // $debug: false !default;
+  
+  $names:  map-get($config, names);
+  $names: $yuboo-grid-names !default;
+
+  $grid:       map-get($names, grid);
+  $grid-fluid: map-get($names, grid-fluid);
+  $row:        map-get($names, row);
+  $column:     map-get($names, column);
+
+  $prefixes:  map-get($config, prefixes);
+  $prefixes: $yuboo-grid-prefixes !default;
+
+  $prefix-placeholders: map-get($prefixes, placeholders);
+  $prefix-classes:      map-get($prefixes, classes);
+
+  $areas: map-get($config, areas);
+
+  @each $area-name, $area-config in $areas {
+    $column-count:   map-get($area-config, column-count);
+    $media-rule:   map-get($area-config, media-rule);
+    @for $index from 0 through $column-count {
+      %_#{$prefix-placeholders}#{$area-name}-#{$index} {
+        @if $verbose {
+          content: "yuboo-grid: area-index: #{$area-name}-#{$index}";
+        }
+        @extend %_#{$prefix-placeholders}#{$column};
+      }
+    }
+    @include media($media-rule) {
+      @for $index from 0 through $column-count {
+        %_#{$prefix-placeholders}#{$area-name}-#{$index} {
+          // @extend %_#{$prefix-placeholders}#{$column};
+          @if $verbose {
+            content: "yuboo-grid: area-index: #{$area-name}-#{$index}";
+          }
+          width:  $index * 100% / map-get($area-config, column-count);
+        }
+        // @if $debug {
+          // .#{$prefix-placeholders}#{$area-name}-#{$index} {
+          //   @extend %_#{$prefix-placeholders}#{$area-name}-#{$index};
+          // }
+        // }
+      }
+      @for $index from 0 to $column-count {
+        %_#{$prefix-placeholders}#{$area-name}-push-#{$index} {
+          @if $verbose {
+            content: "yuboo-grid: #{$area-name}-push-#{$index}";
+          }
+          margin-left:   $index * 100% / map-get($area-config, column-count);
+          margin-right: -$index * 100% / map-get($area-config, column-count);
+        }
+        // @if $debug {
+        //   .#{$prefix-placeholders}#{$area-name}-push-#{$index} {
+        //     @extend %_#{$prefix-placeholders}#{$area-name}-push-#{$index};
+        //   }
+        // }
+      }
+      @for $index from 0 to $column-count {
+        %_#{$prefix-placeholders}#{$area-name}-pull-#{$index} {
+          @if $verbose {
+            content: "yuboo-grid: #{$area-name}-pull-#{$index}";
+          }
+          margin-left:  -$index * 100% / map-get($area-config, column-count);
+          margin-right:  $index * 100% / map-get($area-config, column-count);
+        }
+        // @if $debug {
+        //   .#{$prefix-placeholders}#{$area-name}-pull-#{$index} {
+        //     @extend %_#{$prefix-placeholders}#{$area-name}-pull-#{$index};
+        //   }
+
+        // }
+      }
+      @for $index from -$column-count through $column-count {
+        %_#{$prefix-placeholders}#{$area-name}-offset-#{$index} {
+          @if $verbose {
+            content: "yuboo-grid: #{$area-name}-offset-#{$index}";
+          }
+          @if $index >= 0 {
+            margin-left:  $index * 100% / map-get($area-config, column-count);
+          } @else {
+            margin-right:  -$index * 100% / map-get($area-config, column-count);
+          }
+        }
+        // @if $debug {
+        //   .#{$prefix-placeholders}#{$area-name}-offset-#{$index} {
+        //     @extend %_#{$prefix-placeholders}#{$area-name}-offset-#{$index}
+        //   }
+        // }
+      }
+    }
+  }
+}
+
+@mixin yuboo-grid-generate-placeholders($config) {
+  $fallback: map-get($config, fallback);
+  $fallback: false !default;
+  $verbose: map-get($config, verbose);
+  $verbose: false !default;
+  // $debug: map-get($config, debug);
+  $names:  map-get($config, names);
+  $names: $yuboo-grid-names !default;
+  
+  $grid:       map-get($names, grid);
+  $grid-fluid: map-get($names, grid-fluid);
+  $row:        map-get($names, row);
+  $column:     map-get($names, column);
+
+  $prefixes:  map-get($config, prefixes);
+  $prefixes: $yuboo-grid-prefixes !default;
+
+  $prefix-placeholders: map-get($prefixes, placeholders);
+  $prefix-classes:      map-get($prefixes, classes);
+
+  %_#{$prefix-placeholders}#{$grid} {
+    @include yuboo-grid-grid($config);
+  }
+  // @if $debug {
+  //   ._#{$prefix-placeholders}#{$grid} {
+  //     @extend %_#{$prefix-placeholders}#{$grid};
+  //   }
+  // }
+
+  %_#{$prefix-placeholders}#{$grid-fluid} {
+    @if $verbose {
+      content: "yuboo-grid: grid-fluid";
+    }
+    @include yuboo-grid-grid-fluid($config);
+  }
+  %_#{$prefix-placeholders}#{$row} {
+    @if $verbose {
+      content: "yuboo-grid: row";
+    }
+    @include yuboo-grid-row($config);
+  }
+  // @if $debug {
+  //   .#{$prefix-placeholders}#{$row} {
+  //     @extend %_#{$prefix-placeholders}#{$row};
+  //   }
+  // }
+
+  %_#{$prefix-placeholders}#{$column} {
+    @if $verbose {
+      content: "yuboo-grid: column";
+    }
+    @include yuboo-grid-column($config);
+  }
+  // @if $debug {
+  //   .#{$prefix-placeholders}#{$column} {
+  //     @extend %_#{$prefix-placeholders}#{$column};
+  //   }
+  // }
+  @include yuboo-grid-generate-columns($config);
+}
+
+@mixin yuboo-grid-generate($config) {
+  $fallback: map-get($config, fallback);
+  $fallback: false !default;
+
+  $verbose: map-get($config, verbose);
+  $verbose: false !default;
+
+  // $debug: map-get($config, debug);
+  // $debug: false !default;
+
+  $areas: map-get($config, areas);
+
+  $names: map-get($config, names);
+  $names: $yuboo-grid-names !default;
+
+  $grid:       map-get($names, grid);
+  $grid-fluid: map-get($names, grid-fluid);
+  $row:        map-get($names, row);
+  $column:     map-get($names, column);
+
+  $prefixes:  map-get($config, prefixes);
+  $prefixes: $yuboo-grid-prefixes !default;
+
+  $prefix-placeholders: map-get($prefixes, placeholders);
+  $prefix-classes: map-get($prefixes, classes);
+
+  @include yuboo-grid-generate-placeholders($config);
+
+  @if map-get($config, export-classes) {
+    .#{$prefix-classes}#{$grid} {
+      @extend %_#{$prefix-placeholders}#{$grid};
+    }
+    .#{$prefix-classes}#{$grid-fluid} {
+      @extend %_#{$prefix-placeholders}#{$grid-fluid};
+    }
+    .#{$prefix-classes}#{$row} {
+      @extend %_#{$prefix-placeholders}#{$row};
+    }
+    .#{$prefix-classes}#{$column} {
+      @extend %_#{$prefix-placeholders}#{$column};
+    }
+  }
+
+  @each $area-name, $area-config in $areas {
+    $column-count:   map-get($area-config, column-count);
+    $media-rule:   map-get($area-config, media-rule);
+
+    @for $index from 0 through $column-count {
+      @if map-get($area-config, export-classes) {
+        .#{$prefix-classes}#{$area-name}-#{$index} {
+          @extend %_#{$prefix-placeholders}#{$area-name}-#{$index};
+        }
+      }
+    }
+    @if map-get($area-config, export-push) {
+      @for $index from 0 to $column-count {
+        .#{$prefix-classes}#{$area-name}-push-#{$index} {
+          @extend %_#{$prefix-placeholders}#{$area-name}-push-#{$index};
+        }
+      }
+    }
+    @if map-get($area-config, export-pull) {
+      @for $index from 0 to $column-count {
+        .#{$prefix-classes}#{$area-name}-pull-#{$index} {
+          @extend %_#{$prefix-placeholders}#{$area-name}-pull-#{$index};
+        }
+      }
+    }
+    @if map-get($area-config, export-offset) {
+      @for $index from -$column-count through $column-count {
+        .#{$prefix-classes}#{$area-name}-offset-#{$index} {
+          @extend %_#{$prefix-placeholders}#{$area-name}-offset-#{$index};
+        }
+      }
+    }
+  }
+}
+
+@mixin yuboo-extend($placeholder) {
+  @extend #{$placeholder} !optional;
+}

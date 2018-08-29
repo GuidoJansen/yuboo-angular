@@ -1,0 +1,102 @@
+@charset "utf-8";
+
+@import 'media';
+@import 'sizes';
+@import 'dimensions';
+
+$yuboo-grid-media-XS: $config-media-XS-plus !default;
+$yuboo-grid-media-S:  $config-media-S       !default;
+$yuboo-grid-media-M:  $config-media-M-minus !default;
+$yuboo-grid-media-L:  $config-media-L       !default;
+
+$yuboo-grid-margin-XS: $config-dimensions-margin-XS !default;
+$yuboo-grid-margin-S:  $config-dimensions-margin-S  !default;
+$yuboo-grid-margin-M:  $config-dimensions-margin-M  !default;
+$yuboo-grid-margin-L:  $config-dimensions-margin-L  !default;
+
+$yuboo-grid-min-width-XS: $config-dimensions-min-width-XS !default;
+$yuboo-grid-max-width-XS: $config-dimensions-max-width-XS !default;
+$yuboo-grid-min-width-S:  $config-dimensions-min-width-S  !default;
+$yuboo-grid-max-width-S:  $config-dimensions-max-width-S  !default;
+$yuboo-grid-min-width-M:  $config-dimensions-min-width-M  !default;
+$yuboo-grid-max-width-M:  $config-dimensions-max-width-M  !default;
+$yuboo-grid-min-width-L:  $config-dimensions-min-width-L  !default;
+$yuboo-grid-max-width-L:  $config-dimensions-max-width-L  !default;
+
+$yuboo-grid-names: (
+  grid: grid,
+  grid-fluid: grid-fluid,
+  row: row,
+  column: column,
+) !default;
+
+$yuboo-grid-prefixes: (
+  placeholders: 'yuboo-grid-',
+  classes: 'yuboo-grid-',
+) !default;
+
+$yuboo-grid-column-count: 12 !default;
+$yuboo-grid-verbose: false !default;
+$yuboo-grid-fallback: false !default;
+$yuboo-grid-debug: false !default;
+$yuboo-grid-export-classes: false !default;
+
+$yuboo-grid-areas:(
+    S: (
+      column-count: $yuboo-grid-column-count,
+      gutter-width:  $yuboo-grid-margin-S,
+      gutter-height: $yuboo-grid-margin-S,
+      min-width: $yuboo-grid-min-width-S,
+      max-width: $yuboo-grid-max-width-S,
+      media-rule: "",
+      export-classes: $yuboo-grid-export-classes,
+      export-push: false,
+      export-pull: false,
+      export-offset: false,
+    ),
+    XS: (
+      column-count: $yuboo-grid-column-count,
+      gutter-width:  $yuboo-grid-margin-XS,
+      gutter-height: $yuboo-grid-margin-XS,
+      min-width: $yuboo-grid-min-width-XS,
+      max-width: $yuboo-grid-max-width-XS,
+      media-rule: $yuboo-grid-media-XS,
+      export-classes: $yuboo-grid-export-classes,
+      export-push: false,
+      export-pull: false,
+      export-offset: false,
+    ),
+    M: (
+      column-count: $yuboo-grid-column-count,
+      gutter-width:  $yuboo-grid-margin-M,
+      gutter-height: $yuboo-grid-margin-M,
+      min-width: $yuboo-grid-min-width-M,
+      max-width: $yuboo-grid-max-width-M,
+      media-rule: $yuboo-grid-media-M,
+      export-classes: $yuboo-grid-export-classes,
+      export-push: false,
+      export-pull: false,
+      export-offset: false,
+    ),
+    L: (
+      column-count: $yuboo-grid-column-count,
+      gutter-width:  $yuboo-grid-margin-L,
+      gutter-height: $yuboo-grid-margin-L,
+      min-width: $yuboo-grid-min-width-L,
+      max-width: $yuboo-grid-max-width-L,
+      media-rule: $yuboo-grid-media-L,
+      export-classes: $yuboo-grid-export-classes,
+      export-push: false,
+      export-pull: false,
+      export-offset: false,
+    ) 
+) !default;
+
+$yuboo-grid-config: (
+  verbose: $yuboo-grid-verbose,
+  fallback: $yuboo-grid-fallback,
+  names: $yuboo-grid-names,
+  prefixes: $yuboo-grid-prefixes,
+  export-classes: $yuboo-grid-export-classes,
+  areas: $yuboo-grid-areas, 
+) !default;

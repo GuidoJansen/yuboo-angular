@@ -1,0 +1,20 @@
+$config-dimensions-margin-XS: 20px !default;
+$config-dimensions-margin-S:  20px !default;
+$config-dimensions-margin-M:  24px !default;
+$config-dimensions-margin-L:  32px !default;
+
+$config-dimensions-min-width-XS: 280px !default;
+$config-dimensions-max-width-XS: 460px !default;
+$config-dimensions-min-width-S:  461px !default;
+$config-dimensions-max-width-S:  767px !default;
+$config-dimensions-min-width-M:  751px !default;
+$config-dimensions-max-width-M:  1024px !default;
+$config-dimensions-min-width-L:  1006px !default;
+$config-dimensions-max-width-L:  1312px !default;
+
+$config-dimensions-breakpoint-smartphone:  460px !default;
+$config-dimensions-breakpoint-tablet:      768px !default;
+$config-dimensions-breakpoint-laptop:     1160px !default;
+$config-dimensions-breakpoint-desktop:    1256px !default;
+
+$config-dimensions-media-max-laptop-only: "(min-width: " ($config-dimensions-breakpoint-laptop)  ") and (max-width: " ($config-dimensions-breakpoint-desktop - 1)  ")";

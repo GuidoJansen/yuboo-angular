@@ -1,0 +1,14 @@
+@import "../../grid";
+
+div#root {
+  @extend %_y-grid-grid;
+
+  > div {
+    @extend %_y-grid-row;
+
+    > div {
+      @extend %_y-grid-XS-12 !optional;
+      @extend %_y-grid-M-6;
+    }
+  }
+}

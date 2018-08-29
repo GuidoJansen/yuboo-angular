@@ -1,0 +1,42 @@
+$config-media-breakpoint-XS-S:      460px;
+$config-media-breakpoint-XS-S-plus: 500px;
+$config-media-breakpoint-S-M:       768px;
+$config-media-breakpoint-S-M-plus:  808px;
+$config-media-breakpoint-M-L:      1160px;
+$config-media-breakpoint-M-L-plus: 1280px;
+$config-media-breakpoint-L-XL:     1256px;
+$config-media-breakpoint-XL-XXL:   1600px;
+
+$config-media-XS:       "(max-width: " + $config-media-breakpoint-XS-S              + ")";
+$config-media-XS-plus:  "(max-width: " + $config-media-breakpoint-XS-S-plus         + ")";
+$config-media-S:        "(max-width: " + $config-media-breakpoint-S-M               + ")";
+$config-media-S-plus:   "(max-width: " + $config-media-breakpoint-S-M-plus          + ")";
+$config-media-M:        "(min-width: " + ($config-media-breakpoint-S-M       + 1px) + ")";
+$config-media-M-minus:  "(min-width: " + ($config-media-breakpoint-S-M-plus  + 1px) + ")";
+$config-media-L:        "(min-width: " + ($config-media-breakpoint-M-L       + 1px) + ")";
+$config-media-L-plus:   "(min-width: " + ($config-media-breakpoint-M-L-plus  + 1px) + ")";
+$config-media-XL:       "(min-width: " + ($config-media-breakpoint-L-XL      + 1px) + ")";
+$config-media-XXL:      "(min-width: " + ($config-media-breakpoint-XL-XXL    + 1px) + ")";
+
+$config-media-XS-only:     "(max-width: " + $config-media-breakpoint-XS-S         + ")";
+$config-media-S-only:      "(min-width: " + ($config-media-breakpoint-XS-S + 1px) + ") and (max-width: " + $config-media-breakpoint-S-M      + ")";
+$config-media-S-only-plus: "(min-width: " + ($config-media-breakpoint-XS-S + 1px) + ") and (max-width: " + $config-media-breakpoint-S-M-plus + ")";
+$config-media-M-only:      "(min-width: " + ($config-media-breakpoint-S-M  + 1px) + ") and (max-width: " + $config-media-breakpoint-M-L      + ")";
+$config-media-M-only-plus: "(min-width: " + ($config-media-breakpoint-S-M  + 1px) + ") and (max-width: " + $config-media-breakpoint-M-L-plus + ")";
+$config-media-L-only:      "(min-width: " + ($config-media-breakpoint-M-L  + 1px) + ") and (max-width: " + $config-media-breakpoint-L-XL     + ")";
+$config-media-S-M-only:    "(min-width: " + ($config-media-breakpoint-XS-S + 1px) + ") and (max-width: " + $config-media-breakpoint-M-L      + ")";
+$config-media-M-L-only:    "(min-width: " + ($config-media-breakpoint-S-M  + 1px) + ") and (max-width: " + $config-media-breakpoint-L-XL     + ")";
+
+$config-media-XS-and-down:  "(max-width: " + $config-media-breakpoint-XS-S   + ")";
+$config-media-S-and-down:   "(max-width: " + $config-media-breakpoint-S-M    + ")";
+$config-media-M-and-down:   "(max-width: " + $config-media-breakpoint-M-L    + ")";
+$config-media-L-and-down:   "(max-width: " + $config-media-breakpoint-L-XL   + ")";
+$config-media-XL-and-down:  "(max-width: " + $config-media-breakpoint-XL-XXL + ")";
+$config-media-XXL-and-down: "";
+
+$config-media-XS-and-up:  "";
+$config-media-S-and-up:   "(min-width: " + ($config-media-breakpoint-XS-S   + 1px) + ")";
+$config-media-M-and-up:   "(min-width: " + ($config-media-breakpoint-S-M    + 1px) + ")";
+$config-media-L-and-up:   "(min-width: " + ($config-media-breakpoint-M-L    + 1px) + ")";
+$config-media-XL-and-up:  "(min-width: " + ($config-media-breakpoint-L-XL   + 1px) + ")";
+$config-media-XXL-and-up: "(min-width: " + ($config-media-breakpoint-XL-XXL + 1px) + ")";

@@ -1,0 +1,42 @@
+$config-media-breakpoint-XS-S:      460px !default;
+$config-media-breakpoint-XS-S-plus: 500px !default;
+$config-media-breakpoint-S-M:       768px !default;
+$config-media-breakpoint-S-M-plus:  868px !default;
+$config-media-breakpoint-M-L:      1160px !default;
+$config-media-breakpoint-M-L-plus: 1280px !default;
+$config-media-breakpoint-L-XL:     1256px !default;
+$config-media-breakpoint-XL-XXL:   1600px !default;
+
+$config-media-XS:       "(max-width: " + $config-media-breakpoint-XS-S              + ")" !default;
+$config-media-XS-plus:  "(max-width: " + $config-media-breakpoint-XS-S-plus         + ")" !default;
+$config-media-S:        "(max-width: " + $config-media-breakpoint-S-M               + ")" !default;
+$config-media-S-plus:   "(max-width: " + $config-media-breakpoint-S-M-plus          + ")" !default;
+$config-media-M:        "(min-width: " + ($config-media-breakpoint-S-M       + 1px) + ")" !default;
+$config-media-M-minus:  "(min-width: " + ($config-media-breakpoint-S-M-plus  + 1px) + ")" !default;
+$config-media-L:        "(min-width: " + ($config-media-breakpoint-M-L       + 1px) + ")" !default;
+$config-media-L-plus:   "(min-width: " + ($config-media-breakpoint-M-L-plus  + 1px) + ")" !default;
+$config-media-XL:       "(min-width: " + ($config-media-breakpoint-L-XL      + 1px) + ")" !default;
+$config-media-XXL:      "(min-width: " + ($config-media-breakpoint-XL-XXL    + 1px) + ")" !default;
+
+$config-media-XS-only:     "(max-width: " + $config-media-breakpoint-XS-S         + ")";
+$config-media-S-only:      "(min-width: " + ($config-media-breakpoint-XS-S + 1px) + ") and (max-width: " + $config-media-breakpoint-S-M      + ")" !default;
+$config-media-S-only-plus: "(min-width: " + ($config-media-breakpoint-XS-S + 1px) + ") and (max-width: " + $config-media-breakpoint-S-M-plus + ")" !default;
+$config-media-M-only:      "(min-width: " + ($config-media-breakpoint-S-M  + 1px) + ") and (max-width: " + $config-media-breakpoint-M-L      + ")" !default;
+$config-media-M-only-plus: "(min-width: " + ($config-media-breakpoint-S-M  + 1px) + ") and (max-width: " + $config-media-breakpoint-M-L-plus + ")" !default;
+$config-media-L-only:      "(min-width: " + ($config-media-breakpoint-M-L  + 1px) + ") and (max-width: " + $config-media-breakpoint-L-XL     + ")" !default;
+$config-media-S-M-only:    "(min-width: " + ($config-media-breakpoint-XS-S + 1px) + ") and (max-width: " + $config-media-breakpoint-M-L      + ")" !default;
+$config-media-M-L-only:    "(min-width: " + ($config-media-breakpoint-S-M  + 1px) + ") and (max-width: " + $config-media-breakpoint-L-XL     + ")" !default;
+
+$config-media-XS-and-down:  "(max-width: " + $config-media-breakpoint-XS-S   + ")" !default;
+$config-media-S-and-down:   "(max-width: " + $config-media-breakpoint-S-M    + ")" !default;
+$config-media-M-and-down:   "(max-width: " + $config-media-breakpoint-M-L    + ")" !default;
+$config-media-L-and-down:   "(max-width: " + $config-media-breakpoint-L-XL   + ")" !default;
+$config-media-XL-and-down:  "(max-width: " + $config-media-breakpoint-XL-XXL + ")" !default;
+$config-media-XXL-and-down: "";
+
+$config-media-XS-and-up:  "";
+$config-media-S-and-up:   "(min-width: " + ($config-media-breakpoint-XS-S   + 1px) + ")" !default;
+$config-media-M-and-up:   "(min-width: " + ($config-media-breakpoint-S-M    + 1px) + ")" !default;
+$config-media-L-and-up:   "(min-width: " + ($config-media-breakpoint-M-L    + 1px) + ")" !default;
+$config-media-XL-and-up:  "(min-width: " + ($config-media-breakpoint-L-XL   + 1px) + ")" !default;
+$config-media-XXL-and-up: "(min-width: " + ($config-media-breakpoint-XL-XXL + 1px) + ")" !default;

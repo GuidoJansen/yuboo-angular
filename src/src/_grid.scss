@@ -1,0 +1,52 @@
+@import 'assets/config/yuboo-grid';
+@import 'assets/yuboo/grid';
+
+@include yuboo-grid-generate($yuboo-grid-config);
+
+
+.y-grid-grid {
+  content: 'allabasta';
+}
+
+
+body {
+  content: 'buh1';
+  content: map-get(map-get($yuboo-grid-config, prefixes), placeholders);
+}
+
+$a : 'a';
+
+@mixin a() {
+  @at-root {
+    $a: 'b';
+  }
+}
+
+
+@import 'assets/yuboo/reset/grid';
+$yuboo-grid-min-width-XS: 'a' !default;
+@import 'assets/yuboo/reset/grid';
+$yuboo-grid-min-width-XS: 'b' !default;
+
+body {
+  &:before {
+    content: "#{$yuboo-grid-min-width-XS}";
+    content: "#{$a}";
+  }
+}
+
+$yuboo-grid-prefixes:(
+  placeholders: 'y-g-',
+  classes: 'y-g-',
+);
+@import 'assets/config/yuboo-grid';
+@import 'assets/yuboo/grid';
+
+
+body {
+  content: 'buh2';
+  content: map-get(map-get($yuboo-grid-config, prefixes), placeholders);
+}
+
+@include yuboo-grid-generate($yuboo-grid-config);
+

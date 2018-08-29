@@ -1,0 +1,22 @@
+@import "../grid";
+
+p {
+  font-family: Lato;
+  color: red;
+}
+
+
+.c {
+  @extend %_y-grid-grid;
+}
+.r {
+  @extend %_y-grid-row;
+  > p {
+    @extend %_y-grid-XS-12 !optional;
+    @extend %_y-grid-M-6;
+  }
+}
+
+.col-md-8 {
+  @extend %_y-grid-M-8 !optional;
+}
